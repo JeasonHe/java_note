@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.hjl</groupId>
-  <artifactId>demos</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <artifactId>demo</artifactId>
+  <version>0.0.1</version>
   <packaging>jar</packaging>
 
-  <name>demos</name>
+  <name>java_note</name>
   <description>Demo project for Spring Boot</description>
 
   <parent>
@@ -34,7 +34,16 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-aop</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
 
@@ -51,10 +60,7 @@
       <artifactId>lombok</artifactId>
       <version>1.16.16</version>
     </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
+
   </dependencies>
 
   <build>

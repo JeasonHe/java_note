@@ -1,6 +1,6 @@
 package com.hjl.demo.controller;
 
-import com.hjl.demo.service.OkHttpDemo;
+import com.hjl.demo.service.OkHttp;
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class OkHttpController {
 
     @Autowired
-    OkHttpDemo okHttpDemo;
+    OkHttp okHttp;
     private String url = "http://www.baidu.com";
     private String result;
 
     @RequestMapping("/get")
     public String get() {
         try {
-            result = okHttpDemo.get(url);
+            result = okHttp.get(url);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -33,7 +33,7 @@ public class OkHttpController {
     @RequestMapping("/post")
     public String post() {
         try {
-            result = okHttpDemo.post(url, "hello");
+            result = okHttp.post(url, "hello");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -42,7 +42,7 @@ public class OkHttpController {
 
     @RequestMapping("/pool")
     public void pool() {
-        okHttpDemo.pool(url);
+        okHttp.pool(url);
     }
 
 }
