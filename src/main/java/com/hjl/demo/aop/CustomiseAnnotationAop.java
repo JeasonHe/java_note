@@ -1,6 +1,8 @@
 package com.hjl.demo.aop;
 
 import com.hjl.demo.annotation.MethodAnnotation;
+import com.hjl.demo.annotation.ParameterAnnotation;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.time.LocalDateTime;
@@ -30,34 +32,49 @@ public class CustomiseAnnotationAop {
      * (..):所有参数
      */
     @Pointcut("execution(* com.hjl.demo.service..*.*(..))")
-    public void customiseAnnotation() {
+    public void methodAnnotation() {
     }
 
-    @Around("customiseAnnotation()")
+    /**
+     * 切入点：注解
+     */
+    @Pointcut("@annotation(com.hjl.demo.annotation.ParameterAnnotation)")
+    public void paramAnnotation() {
+
+    }
+
+    @Around("methodAnnotation()")
     public Object interceptor(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         //方法签名
         MethodSignature methodSignature = (MethodSignature) proceedingJoinPoint.getSignature();
-        //方法签名
-        log.info("getSignature(),{}", methodSignature);
 
-        //是否是注解的呈现
+        //是否是MethodAnnotation注解
         if (methodSignature.getMethod().isAnnotationPresent(MethodAnnotation.class)) {
             LocalTime startTime = LocalDateTime.now().toLocalTime();
+            //获取注解
+            MethodAnnotation methodAnnotation = methodSignature.getMethod()
+                    .getAnnotation(MethodAnnotation.class);
+            //获取注解传入的值
+            log.info(methodAnnotation.value());
+            //执行拦截的方法
             proceedingJoinPoint.proceed();
             LocalTime endTime = LocalDateTime.now().toLocalTime();
             log.info("方法执行时间:{}", endTime.getSecond() - startTime.getSecond());
-        } else {
-            log.info("name:{}", proceedingJoinPoint.getTarget().getClass().getName());
+        }
+
+        //是否是ParameterAnnotation注解
+        if (methodSignature.getMethod().isAnnotationPresent(ParameterAnnotation.class)) {
+            System.out.println(methodSignature.getMethod());
+            proceedingJoinPoint.proceed();
         }
         return null;
     }
 
-    /**
-     * 获取调用的目标方法
-     */
-    private Method getMethod(ProceedingJoinPoint pjp) throws NoSuchMethodException {
-        MethodSignature signature = (MethodSignature) pjp.getSignature();
-        return signature.getMethod();
+    @Around("paramAnnotation()")
+    public Object paramInterceptor(ProceedingJoinPoint proceedingJoinPoint) {
+        //方法签名
+        MethodSignature methodSignature = (MethodSignature) proceedingJoinPoint.getSignature();
+        log.info("参数注解");
+        return null;
     }
-
 }

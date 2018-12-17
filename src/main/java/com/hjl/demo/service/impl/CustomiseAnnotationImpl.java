@@ -3,6 +3,7 @@ package com.hjl.demo.service.impl;
 import com.hjl.demo.annotation.MethodAnnotation;
 import com.hjl.demo.annotation.ParameterAnnotation;
 import com.hjl.demo.service.CustomiseAnnotation;
+import lombok.Data;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
  * @date : Created in 2018/12/17 13:56
  */
 @Service
+@Data
 public class CustomiseAnnotationImpl implements CustomiseAnnotation {
 
     @ParameterAnnotation(value = "customiseAnnotation")
@@ -20,6 +22,13 @@ public class CustomiseAnnotationImpl implements CustomiseAnnotation {
     @Override
     @MethodAnnotation(value = "method")
     public void testAnnotation(String name) {
-        System.out.println(name+":"+test);
+        System.out.println(name + ":" + test);
     }
+
+    @Override
+    public void testParamAnnotation() {
+        System.out.println(test);
+    }
+
+
 }

@@ -9,7 +9,12 @@ package com.hjl.demo.service;
 public interface CustomiseAnnotation {
 
     /**
-     * 测试自定义注解
+     * 测试自定义方法注解
      */
     void testAnnotation(String name);
+
+    /**
+     * 测试自定义属性注解
+     */
+    void testParamAnnotation();
 }

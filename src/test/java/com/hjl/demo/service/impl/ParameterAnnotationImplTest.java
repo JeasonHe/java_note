@@ -24,5 +24,6 @@ public class ParameterAnnotationImplTest {
     @Test
     public void testAnnotation() {
         customiseAnnotation.testAnnotation("test");
+        customiseAnnotation.testParamAnnotation();
     }
 }
