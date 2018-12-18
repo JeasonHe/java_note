@@ -1,6 +1,7 @@
 package com.hjl.demo.service.impl;
 
 
+import com.hjl.demo.annotation.ParameterAnnotation;
 import com.hjl.demo.service.CustomiseAnnotation;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +21,9 @@ public class ParameterAnnotationImplTest {
 
     @Autowired
     private CustomiseAnnotation customiseAnnotation;
+
+    @ParameterAnnotation(value = "name")
+    private String param;
 
     @Test
     public void testAnnotation() {

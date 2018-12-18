@@ -17,17 +17,17 @@ import org.springframework.stereotype.Service;
 public class CustomiseAnnotationImpl implements CustomiseAnnotation {
 
     @ParameterAnnotation(value = "customiseAnnotation")
-    private String test;
+    private String param;
 
     @Override
     @MethodAnnotation(value = "method")
     public void testAnnotation(String name) {
-        System.out.println(name + ":" + test);
+        System.out.println(name + ":" + param);
     }
 
     @Override
     public void testParamAnnotation() {
-        System.out.println(test);
+        System.out.println(param);
     }
 
 

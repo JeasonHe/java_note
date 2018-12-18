@@ -47,7 +47,6 @@ public class CustomiseAnnotationAop {
     public Object interceptor(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         //方法签名
         MethodSignature methodSignature = (MethodSignature) proceedingJoinPoint.getSignature();
-
         //是否是MethodAnnotation注解
         if (methodSignature.getMethod().isAnnotationPresent(MethodAnnotation.class)) {
             LocalTime startTime = LocalDateTime.now().toLocalTime();
@@ -60,21 +59,15 @@ public class CustomiseAnnotationAop {
             proceedingJoinPoint.proceed();
             LocalTime endTime = LocalDateTime.now().toLocalTime();
             log.info("方法执行时间:{}", endTime.getSecond() - startTime.getSecond());
-        }
-
-        //是否是ParameterAnnotation注解
-        if (methodSignature.getMethod().isAnnotationPresent(ParameterAnnotation.class)) {
-            System.out.println(methodSignature.getMethod());
+        } else {
             proceedingJoinPoint.proceed();
         }
         return null;
     }
 
     @Around("paramAnnotation()")
-    public Object paramInterceptor(ProceedingJoinPoint proceedingJoinPoint) {
-        //方法签名
-        MethodSignature methodSignature = (MethodSignature) proceedingJoinPoint.getSignature();
-        log.info("参数注解");
+    public Object paramInterceptor(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        //TODO 待完善
         return null;
     }
 }

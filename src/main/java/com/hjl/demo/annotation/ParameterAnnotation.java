@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
  * @author : hejiale
  * @date : Created in 2018/12/17 11:54
  */
-@Target({ElementType.FIELD, ElementType.PARAMETER})
+@Target({ElementType.FIELD, ElementType.PARAMETER, ElementType.TYPE_PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ParameterAnnotation {
 
